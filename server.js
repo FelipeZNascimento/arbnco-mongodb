@@ -84,7 +84,7 @@ router.route('/forecasts')
                 res.send(err);
             
             res.json(forecasts);
-        }).sort({date: 1})
+        }).sort({date: -1})
     });
     
     router.route('/forecasts/:forecast_id')
