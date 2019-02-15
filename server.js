@@ -15,7 +15,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors()); //Enable cross-origin requests
 
-
 var port = process.env.PORT || 8080;        // set our port
 var dbURI = process.env.MONGODB_URI;
 
@@ -82,7 +81,7 @@ router.route('/forecasts')
     })
 
     .get(function(req, res) {
-        forecast.find(function(err, forecasts) {
+        Forecast.find(function(err, forecasts) {
             if (err)
                 res.send(err);
             
@@ -95,9 +94,7 @@ router.route('/forecasts')
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
-
 var Forecast     = require('./schema/forecast');
-
 
 // START THE SERVER
 // =============================================================================
