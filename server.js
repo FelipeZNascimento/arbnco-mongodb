@@ -17,7 +17,8 @@ app.use(cors()); //Enable cross-origin requests
 
 
 var port = process.env.PORT || 8080;        // set our port
-var dbURI = process.env.MONGODB_URI;
+var dbURI = "mongodb://felipezanon:arbnco0@ds137255.mlab.com:37255/heroku_1s42sshm";
+// var dbURI = process.env.MONGODB_URI;
 
 var mongoose   = require('mongoose');
 mongoose.connect(dbURI); // connect to the database
@@ -51,42 +52,42 @@ router.use(function(req, res, next) {
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-    res.json({ message: 'UruIT API is up and running' });   
+    res.json({ message: 'API app is up and running' });   
 });
 
 
-// on routes that end in /games
+// on routes that end in /forecasts
 // ----------------------------------------------------
-router.route('/games')
-    // create a game (accessed at POST http://localhost:8080/api/games)
+router.route('/forecasts')
+    // create a forecast (accessed at POST http://localhost:8080/api/forecasts)
     .post(function(req, res) {
-        var game = new Game();      // create a new instance of the Game model
-        game.winner  = req.body.winner;  // set player 1 (comes from the request)
-        game.player1 = req.body.player1;  // set player 1 (comes from the request)
-        game.player2 = req.body.player2;  // set player 2 (comes from the request)
+        var forecast = new Forecast();      // create a new instance of the Forecast model
+        forecast.winner  = req.body.winner;  // set player 1 (comes from the request)
+        forecast.player1 = req.body.player1;  // set player 1 (comes from the request)
+        forecast.player2 = req.body.player2;  // set player 2 (comes from the request)
 
-        // save the game and check for errors
-        game.save(function(err, data) {
+        // save the forecast and check for errors
+        forecast.save(function(err, data) {
             if (err)
                 res.send(err);
             
-            console.log("Game created: " + game._id);
+            console.log("Forecast created: " + forecast._id);
 
             res.json(
                 { 
-                    message: 'Game created!', 
-                    id: game._id
+                    message: 'Forecast created!', 
+                    id: forecast._id
                 }
             );
         });
     })
 
     .get(function(req, res) {
-        Game.find(function(err, games) {
+        forecast.find(function(err, forecasts) {
             if (err)
                 res.send(err);
             
-            res.json(games);
+            res.json(forecasts);
         })    
     });
 
@@ -96,7 +97,7 @@ router.route('/games')
 // all of our routes will be prefixed with /api
 app.use('/api', router);
 
-var Game     = require('./app/models/game');
+var Forecast     = require('./schema/forecast');
 
 
 // START THE SERVER

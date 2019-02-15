@@ -2,10 +2,10 @@
     "name": "node-api",
     "main": "server.js",
     "dependencies": {
-        "express": "~4.0.0",
-        "mongoose": "~4.4.19",
-        "body-parser": "~1.0.1",
-        "cors": "latest"
+        "body-parser": "^1.18.3",
+        "cors": "latest",
+        "express": "^4.16.4",
+        "mongoose": "^5.4.12"
     },
     "scripts": {
         "start": "node server.js"
