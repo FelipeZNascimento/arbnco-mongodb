@@ -60,9 +60,7 @@ router.route('/forecasts')
     // create a forecast (accessed at POST http://localhost:8080/api/forecasts)
     .post(function(req, res) {
         var forecast = new Forecast();      // create a new instance of the Forecast model
-        forecast.winner  = req.body.winner;  // set player 1 (comes from the request)
-        forecast.player1 = req.body.player1;  // set player 1 (comes from the request)
-        forecast.player2 = req.body.player2;  // set player 2 (comes from the request)
+        forecast.weatherInfo  = req.body;  // set weatherInfo
 
         // save the forecast and check for errors
         forecast.save(function(err, data) {
