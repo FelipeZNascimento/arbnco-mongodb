@@ -17,8 +17,7 @@ app.use(cors()); //Enable cross-origin requests
 
 
 var port = process.env.PORT || 8080;        // set our port
-var dbURI = "mongodb://felipezanon:arbnco0@ds137255.mlab.com:37255/heroku_1s42sshm";
-// var dbURI = process.env.MONGODB_URI;
+var dbURI = process.env.MONGODB_URI;
 
 var mongoose   = require('mongoose');
 mongoose.connect(dbURI); // connect to the database
