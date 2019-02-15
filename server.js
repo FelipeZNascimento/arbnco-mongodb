@@ -87,9 +87,10 @@ router.route('/forecasts')
             
             res.json(forecasts);
         })    
-    })
+    });
     
-    // get the bear with that id (accessed at GET http://localhost:8080/api/forecasts/:forecast_id)
+    router.route('/forecasts/:forecast_id')
+    // get the forecast with that id (accessed at GET http://localhost:8080/api/forecasts/:forecast_id)
     .get(function(req, res) {
         Forecast.findById(req.params.forecast_id, function(err, forecast) {
             if (err)
